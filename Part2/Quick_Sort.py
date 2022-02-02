@@ -1,3 +1,5 @@
+# 첫번째 데이터를 피벗으로 삼는 호어 분할 방식
+# 평균적인 시간복잡도 O(NlogN), 최악의 경우(데이터가 거의 정렬되어 있는 경우) O(N^2)
 def quick_sort(array, start, end):
     # 원소가 1개인 경우 종료
     if start >= end:

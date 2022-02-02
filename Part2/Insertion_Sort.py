@@ -1,3 +1,4 @@
+# 시간복잡도 O(N^2), 최선의 경우(데이터가 거의 정렬되어 있는 경우) O(N)
 array = list(map(int, input().split()))
 
 for i in range(1, len(array)):

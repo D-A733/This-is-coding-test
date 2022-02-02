@@ -1,3 +1,4 @@
+# 시간복잡도 O(N^2)
 array = list(map(int, input().split()))
 
 for i in range(len(array)-1):
