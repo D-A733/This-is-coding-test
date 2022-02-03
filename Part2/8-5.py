@@ -14,7 +14,6 @@ for i in range(1, m+1):
             a = min(dp[i - k], a)
         dp[i] = a + 1
     except IndexError as Exception:
-        print(i)
         continue
 
 if dp[m] > 10000:
