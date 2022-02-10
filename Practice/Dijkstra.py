@@ -1,22 +1,23 @@
 import sys
+inf = int(1e9)
 read = sys.stdin.readline
 n, m, c = map(int, read().split())
-inf = int(1e9)
-distance = [inf] * (n+1)
-visited = [False] * (n+1)
 graph = [[] for _ in range(n+1)]
 for _ in range(m):
     x, y, z = map(int, read().split())
     graph[x].append((y,z))
 
+distance = [inf] * (n+1)
+visited = [False] * (n+1)
+
 def get_smallest_node():
-    c = inf
+    dist = inf
     index = 0
-    for i in range(1, n+1):
-        if not visited[i] and c > distance[i]:
-            c = distance[i]
+    for i in range(n-1):
+        if not visited[i] and distance[i] < dist:
+            dist = distance[i]
             index = i
-    return index
+    return i
 
 def dijkstra(start):
     visited[start] = True
@@ -32,5 +33,6 @@ def dijkstra(start):
                 distance[y] = dist
 
 dijkstra(c)
+
 city = list(filter(lambda x: x < inf, distance))
 print("{} {}".format(len(city) - 1, max(city)))

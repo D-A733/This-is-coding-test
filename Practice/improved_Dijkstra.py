@@ -1,28 +1,26 @@
 import heapq
 import sys
+inf = int(1e9)
 read = sys.stdin.readline
-n, m, start = map(int, read().split())
+n, m, c = map(int, read().split())
 graph = [[] for _ in range(n+1)]
 for _ in range(m):
-    a, b, c = map(int, read().split())
-    graph[a].append((b,c))
-
-inf = int(1e9)
+    x, y, z = map(int, read().split())
+    graph[x].append((y,z))
 distance = [inf] * (n+1)
+
 def dijkstra(start):
     q = []
     distance[start] = 0
     heapq.heappush(q, (0, start))
     while q:
         dist, now = heapq.heappop(q)
-        if dist > distance[now]:
-            continue
-        for b, c in graph[now]:
-            cost = dist + c
-            if distance[b] > cost:
-                distance[b] = cost
-                heapq.heappush(q, (cost, b))
+        for y, z in graph[now]:
+            cost = dist + z
+            if cost < distance[y]:
+                distance[y] = cost
+                heapq.heappush(q, (cost, y))
 
-dijkstra(start)
+dijkstra(c)
 city = list(filter(lambda x: x < inf, distance))
 print("{} {}".format(len(city) - 1, max(city)))
